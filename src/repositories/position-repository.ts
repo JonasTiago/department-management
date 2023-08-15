@@ -17,7 +17,15 @@ async function findPositionByName(name: string) {
   });
 }
 
+async function findPositionById(id: number) {
+  return await prisma.position.findUnique({
+    where: {
+      id,
+    },
+  });
+}
 export const positionRepository = {
   insertPosition,
   findPositionByName,
+  findPositionById
 };

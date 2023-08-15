@@ -19,13 +19,22 @@ async function createPosition({ salary, name }: Position) {
 
   const position = await positionRepository.findPositionByName(name);
 
-  console.log(position);
-
   if (position) throw 'position exist!';
 
   return await positionRepository.insertPosition({ salary, name });
 }
 
+async function findPositionById(id: number) {
+  const positionSpecific = await positionRepository.findPositionById(id);
+  if (!positionSpecific) throw new Error('Product not found!');
+  return positionSpecific;
+}
+
+async function (params:type) {
+  
+}
+
 export const positionService = {
   createPosition,
+  findPositionById,
 };
