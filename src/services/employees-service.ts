@@ -4,12 +4,13 @@ import { positionRepository } from '../repositories/position-repository';
 
 interface Employees {
   name: string;
+  codigo: number;
   positionId: number;
 }
 
-async function createEmployees({ name, positionId }: Employees) {
+async function createEmployees({ name, codigo, positionId }: Employees) {
   const { error } = employeesSchema.validate(
-    { name, positionId },
+    { name, codigo, positionId },
     { abortEarly: false }
   );
 
@@ -18,7 +19,7 @@ async function createEmployees({ name, positionId }: Employees) {
     throw errors;
   }
 
-  const employees = await employeesRepository.findEmployeesByName(name);
+  const employees = await employeesRepository.findEmployeesByCodigo(codigo);
 
   if (employees) throw 'employees exist!';
 
@@ -26,7 +27,11 @@ async function createEmployees({ name, positionId }: Employees) {
 
   if (!position) throw 'position do not exite!';
 
-  return await employeesRepository.insertEmployees({ name, positionId });
+  return await employeesRepository.insertEmployees({
+    name,
+    codigo,
+    positionId,
+  });
 }
 
 async function findEmployeesById(id: number) {

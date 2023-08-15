@@ -19,7 +19,8 @@ model Position {
 
 model Employee {
   id         Int      @id @default(autoincrement())
-  name       String   @unique
+  name       String
+  codigo     Int      @unique
   position   Position @relation(fields: [positionId], references: [id])
   positionId Int
 }

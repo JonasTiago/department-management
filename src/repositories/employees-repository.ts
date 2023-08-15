@@ -9,10 +9,10 @@ async function insertEmployees(employee: EmployeeInput) {
   });
 }
 
-async function findEmployeesByName(name: string) {
+async function findEmployeesByCodigo(codigo: number) {
   return await prisma.employee.findFirst({
     where: {
-      name,
+      codigo,
     },
   });
 }
@@ -34,7 +34,7 @@ async function findEmployees() {
 
 export const employeesRepository = {
   insertEmployees,
-  findEmployeesByName,
+  findEmployeesByCodigo,
   findEmployeesById,
   findEmployees,
 };

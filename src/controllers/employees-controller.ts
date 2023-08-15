@@ -5,11 +5,12 @@ export async function createEmployees(
   req: Request,
   res: Response
 ): Promise<Response> {
-  const { name, positionId } = req.body;
+  const { name, codigo, positionId } = req.body;
 
   try {
     const createEmployees = await employeesService.createEmployees({
       name,
+      codigo,
       positionId,
     });
     res.status(201).send(createEmployees);
