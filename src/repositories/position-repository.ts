@@ -3,9 +3,9 @@ import prisma from '../config/db';
 
 export type ProductInput = Omit<Position, 'id'>;
 
-async function insertPosition(protuct: ProductInput): Promise<Position> {
+async function insertPosition(position: ProductInput): Promise<Position> {
   return await prisma.position.create({
-    data: protuct,
+    data: position,
   });
 }
 
@@ -28,6 +28,7 @@ async function findPositionById(id: number) {
 async function findPosition() {
   return await prisma.position.findMany({});
 }
+
 export const positionRepository = {
   insertPosition,
   findPositionByName,

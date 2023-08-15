@@ -19,7 +19,7 @@ async function createPosition({ salary, name }: Position) {
 
   const position = await positionRepository.findPositionByName(name);
 
-  if (position) throw 'position exist!';
+  if (position) throw new Error('position exist!');
 
   return await positionRepository.insertPosition({ salary, name });
 }

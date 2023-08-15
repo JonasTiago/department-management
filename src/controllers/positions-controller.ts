@@ -18,6 +18,7 @@ export async function createPosition(
     res.status(500).send(erro);
   }
 }
+
 export async function getSpecifcPosition(
   req: Request,
   res: Response
@@ -31,6 +32,7 @@ export async function getSpecifcPosition(
     res.status(500).send(erro);
   }
 }
+
 export async function getPositions(
   req: Request,
   res: Response
