@@ -25,6 +25,13 @@ async function findPositionById(id: number) {
   });
 }
 
+async function findSumPositionById(id: number) {
+  return await prisma.$queryRawUnsafe(
+    'SELECT SUM(CAST(salary AS BIGINT)) as salary FROM "Position" p JOIN "Employee" e ON p.id = e."positionId" WHERE p.id = $1;',
+    id
+  );
+}
+
 async function findPosition() {
   return await prisma.position.findMany({});
 }
@@ -34,4 +41,5 @@ export const positionRepository = {
   findPositionByName,
   findPositionById,
   findPosition,
+  findSumPositionById,
 };

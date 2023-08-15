@@ -23,12 +23,12 @@ export async function getSpecifcPosition(
   req: Request,
   res: Response
 ): Promise<Response> {
-  const id = Number(req.params.id)
+  const id = Number(req.params.id);
   try {
     const positionSpecific = await positionService.findPositionById(id);
     res.status(200).send(positionSpecific);
   } catch (erro) {
-    if (erro === 'position exist!') return res.status(409).send(erro);
+    if (erro === 'Position not found!') return res.status(404).send(erro);
     res.status(500).send(erro);
   }
 }
@@ -42,6 +42,20 @@ export async function getPositions(
     res.status(200).send(listPosition);
   } catch (erro) {
     if (erro === 'position exist!') return res.status(409).send(erro);
+    res.status(500).send(erro);
+  }
+}
+
+export async function getSumSpecifcPosition(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  const id = Number(req.params.id);
+  try {
+    const sumPosition = await positionService.findSumPositionById(id);
+    res.status(200).json(sumPosition);
+  } catch (erro) {
+    if (erro === 'Position not found!') return res.status(409).send(erro);
     res.status(500).send(erro);
   }
 }

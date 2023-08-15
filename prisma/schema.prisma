@@ -13,7 +13,7 @@ datasource db {
 model Position {
   id       Int        @id @default(autoincrement())
   name     String
-  salary   String
+  salary   Int
   employee Employee[]
 }
 

@@ -2,7 +2,7 @@ import { positionRepository } from '../repositories/position-repository';
 import { positionSchema } from '../models/position-model';
 
 interface Position {
-  salary: string;
+  salary: number;
   name: string;
 }
 
@@ -19,15 +19,22 @@ async function createPosition({ salary, name }: Position) {
 
   const position = await positionRepository.findPositionByName(name);
 
-  if (position) throw new Error('position exist!');
+  if (position) throw 'position exist!';
 
   return await positionRepository.insertPosition({ salary, name });
 }
 
 async function findPositionById(id: number) {
   const positionSpecific = await positionRepository.findPositionById(id);
-  if (!positionSpecific) throw new Error('Product not found!');
+  if (!positionSpecific) throw 'Position not found!';
   return positionSpecific;
+}
+
+async function findSumPositionById(id: number) {
+  const position = await positionRepository.findPositionById(id);
+  if (!position) throw 'Position not found!';
+  const sumPosition = await positionRepository.findSumPositionById(id);
+  return sumPosition;
 }
 
 async function findPosition() {
@@ -37,5 +44,6 @@ async function findPosition() {
 export const positionService = {
   createPosition,
   findPositionById,
-  findPosition
+  findPosition,
+  findSumPositionById,
 };
