@@ -30,11 +30,12 @@ async function findPositionById(id: number) {
   return positionSpecific;
 }
 
-async function (params:type) {
-  
+async function findPosition() {
+  return await positionRepository.findPosition();
 }
 
 export const positionService = {
   createPosition,
   findPositionById,
+  findPosition
 };

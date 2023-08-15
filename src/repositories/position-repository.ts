@@ -24,8 +24,13 @@ async function findPositionById(id: number) {
     },
   });
 }
+
+async function findPosition() {
+  return await prisma.position.findMany({});
+}
 export const positionRepository = {
   insertPosition,
   findPositionByName,
-  findPositionById
+  findPositionById,
+  findPosition,
 };

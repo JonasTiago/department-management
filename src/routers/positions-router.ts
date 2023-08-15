@@ -1,5 +1,9 @@
 import { Router } from 'express';
-import { createPosition, getSpecifcPosition } from '../controllers/positions-controller';
+import {
+  createPosition,
+  getSpecifcPosition,
+  getPositions,
+} from '../controllers/positions-controller';
 
 const positionRouter = Router();
 positionRouter.post('/positions', createPosition);
